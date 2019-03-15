@@ -20,7 +20,6 @@ constructor(x,y,r, stroke, fill, over, canvas){
 }
 
 mDown(e){
-    console.log("mouse down");
     if(this.inBounds){
         Point.taken = this;
     }
@@ -32,11 +31,7 @@ mMove(e){
     this.inBounds = this.boundsCheck(this.xMouse, this.yMouse, this.x, this.y, this.r);
 }
 mUp(e){
-    console.log("mouse up");
     Point.taken = "";
-
- 
-
 }
 update(){
 

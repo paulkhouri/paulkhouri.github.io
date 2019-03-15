@@ -1,59 +1,49 @@
 console.log("point js file has been called");
-
-// does not have static variable to ensure only one point is selected
 class Point{
-// class Point x,y,r, stroke, fill, over, canvas 
-constructor(x,y,r, stroke, fill, over, canvas){
-    this.x = x;
-    this.y = y;
+// class Point xC,yC,r, stroke, fill, over, canvas 
+constructor(xC,yC,r, stroke, fill, over, canvas){
+    this.xC = xC;
+    this.yC = yC;
     this.r = r;
     this.stroke = stroke;
     this.fill = fill;
     this.over = over;
-
-    this.xMouse = 0;
-    this.yMouse = 0;
+    this.inBounds = false;
 
     this.element = canvas;
+    this.xMouse = 0;
+    this.yMouse = 0;
     this.element.addEventListener('mousedown', this.mDown.bind(this));
     this.element.addEventListener('mousemove', this.mMove.bind(this));
     this.element.addEventListener('mouseup', this.mUp.bind(this));
-
-    this.inBounds = false;
-    this.dragging = false;
   
 }
 
 mDown(e){
-    console.log("mouse down");
     if(this.inBounds){
-        this.dragging = true;
+        Point.taken = this;
     }
 
 }
 mMove(e){
     this.xMouse = e.offsetX;
     this.yMouse = e.offsetY; 
-    this.inBounds = this.boundsCheck(this.xMouse, this.yMouse, this.x, this.y, this.r);
+    this.inBounds = this.boundsCheck(this.xMouse, this.yMouse, this.xC, this.yC, this.r);
 }
 mUp(e){
-    console.log("mouse up");
-    this.dragging = false;
-
- 
-
+    Point.taken = "";
 }
 update(){
 
-    if(this.dragging){
-        this.x=this.xMouse;
-        this.y=this.yMouse;
+    if(Point.taken == this){
+        this.xC=this.xMouse;
+        this.yC=this.yMouse;
     }
 
     this.draw();
 }
 draw(){
-    if(this.inBounds || this.dragging){
+    if(this.inBounds || Point.taken == this){
     ctx.fillStyle= this.over;
     }else{
         ctx.fillStyle= this.fill;
@@ -61,9 +51,21 @@ draw(){
     ctx.strokeStyle = this.stroke;
     ctx.lineWidth = 5;
     ctx.beginPath()
-    ctx.arc(this.x,this.y, this.r, 0, 2*Math.PI);
+    ctx.arc(this.xC,this.yC, this.r, 0, 2*Math.PI);
     ctx.fill();
     ctx.stroke();
+}
+
+drawRect(x,y,w,h,col, toStroke){
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.fillStyle = col;
+    ctx.fill();
+    if(toStroke){
+        ctx.stroke()
+    }
+    ctx.restore();
 }
 
 boundsCheck(x_1, y_1, x_2, y_2, r){
@@ -75,13 +77,13 @@ boundsCheck(x_1, y_1, x_2, y_2, r){
         }
 
 }
-// these allow other parts of the program to get the x  and y values of the point
+// these allow other parts of the program to get the xC  and yC values of the point
 getX(){
-    return this.x;
+    return this.xC;
 }
 
 getY(){
-    return this.y;
+    return this.yC;
 }
 
 }
