@@ -11,12 +11,67 @@
 <style type="text/css">
     body{
         background-color: rgb(227, 229, 186);
+        margin-left: 20px;
     }
+    .imgSizer{
+        width: 700px;
+        margin-bottom: 20px;
+        
+    }
+    .vid_div{
+        margin-bottom: 30px;
+    }
+    .emphasise{
+        font-style: italic;
+        font-weight:bolder; 
+
+    }
+
+    
+
     
 
     </style>
 </head>
 <body>
+    <hr>
+    <h1>First Sprint: </h1>
+    <p>My aim is to have a defined drawing area on the canvas.<br>
+    When the user down drags in this area, the bounding box shows the boundary defined by MouseStart and current Mouse coordinates.<br>
+    When the rectangle is released a coloured rectangle stays on the screen.<br></p>
+    <p> And <span class="emphasise">by the way</span> I am also going to <span class="emphasise">thoroughly </span> comment my code</p>
+    <h3>My Trello plan </h3>
+    <div><img class="imgSizer" src="version_one/trello_v1.jpg"></div>
+    <h3> Testing </h3>
+    <p> This first test uses console logging to test if my boundary function is working properly </p>
+    <div class="vid_div"><video width="600"  controls>
+            <source src="version_one/basictest.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p> This second test explores how the bounding box appears when I click and drg in and out of the rectangle.<br>
+        This could be a bit more user friendly by staying at the boundary if the user drags outside , 
+        but this is a reasonable working version for now.
+        </p>
+    <div class="vid_div"><video width="600"  controls>
+            <source src="version_one/inboundstest.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+        </div>
+        <p> This third test, tests whether I have completed my first sprint.<br>
+            Note the "double click" in the same place , this would have created an object with virtually no dimensions.<br>
+            Would probably be good to improve on this at some stage.
+            </p>
+    <div class="vid_div"><video width="600"  controls>
+            <source src="version_one/withrectangelstest.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+        </div>
+        <hr>
+        <h2>Second Sprint: </h2>
+
+
+    <hr>
 <ul>
 <li><a href="drawing/basicdrawing.html"> Basic Drawing </a></li>
 <li><a href="functions/functions.html"> Functions </a>
