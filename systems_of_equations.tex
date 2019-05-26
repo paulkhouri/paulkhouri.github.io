@@ -1,0 +1,728 @@
+\documentclass[a4paper,11pt]{article}
+%this is the preamble
+\usepackage{amsmath,graphicx,geometry,tikz,multicol,pgfplots,gensymb,comment,setspace,array,enumitem,tcolorbox,caption}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{calc}
+
+\pgfplotsset{width=2cm, compat=1.9}
+
+\geometry{a4paper, top=2cm,bottom=2cm,right=1.5cm,left=1.5cm}
+
+\usepackage[makeroom]{cancel}
+\definecolor{shadecolor}{RGB}{180,180,180}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\renewcommand{\arraystretch}{2}
+\setlength\parindent{0pt}
+\begin{document}
+			\Large
+			\begin{figure} 
+				\centering
+				\includegraphics[height=4cm]{Marsden_green_on_white.jpg}
+				\caption*{May 2017}
+			\end{figure}
+			.
+			\vspace{3cm}
+			\begin{center}
+				\textbf{Year 12 Systems of Equations Course Notes}
+			\end{center}
+			
+			\vspace{3cm}
+			
+			\normalsize
+			\newpage
+\textbf{Year 12 Systems of Equations 2.14 Course Notes}
+\tableofcontents
+\newpage	
+\Large \textbf{2.14 Systems of Equations}\normalsize
+\section{Introduction}	
+A system of equations is a group of two or more equations, where the equations have the same variables.\\
+This standard focuses on systems with two equations where at least one is non linear.\\
+Examples of equation systems:\\\\
+1. Linear simultaneous equations:
+\begin{align*}
+&y=x-4&&&\\
+&y+2x=14&&&
+\end{align*}
+2. Non-linear simultaneous equations:
+\begin{align*}
+&y=x^{2}-2x-4&&&\\
+&y=2x-4&&&
+\end{align*}
+3. Non-linear simultaneous equations:
+\begin{align*}
+&y=x+1&&&\\
+&xy=6&&&
+\end{align*}
+\section{Linear Simultaneous Equations Revision}
+Solve the following simultaneous linear equations using the substitution method.\\
+\begin{align*}
+y&=x-3&\circled{1}&&&&\\
+y+2x&=15&\circled{2}&&&&
+\end{align*}
+We use \circled{1} to substitute for $y$ in equation \circled{2}
+\begin{align*}
+y+2x&=15&&&\\
+x-3+2x&=15&&&\\
+3x&=18&&&\\
+x&=6&&&
+\end{align*}
+Substitute $x$ into either equation (in this case we will choose \circled{1})
+\begin{align*}
+y&=x-3&&&\\
+y&=6-3&&&\\
+y&=3&&&\\
+\end{align*}
+Page 12 Nulake book
+\newpage
+\section{Linear Simultaneous Equations Revision with word problems}
+\begin{enumerate}
+\item A hamburger costs 3 times the cost of a bag of chips. 
+I buy 10 hamburgers and 4 bags of chips and it costs me \$35.70. How much does a hamburger cost?
+\item A group is to visit Happy Valley Theme Park by bus. The bus will hold 50 people. 
+Adults are charged \$8 each for the trip and children \$2.50 each. The bus is full and \$196.50 is collected in total from the passengers.   Find the number of children on the bus.
+\item Tickets to a play cost \$38 for adults and \$12 for students. 
+500 tickets are sold for \$18012. 
+How many adults and how many students attended?
+\item Maddie buys 2 kg of flour and 1 dozen eggs for \$9.50. 
+Later she buys a kilogram of flour and 2 dozen eggs for \$8.80.
+Find the cost of a kilogram of flour.
+\item Lucy bought mini pizzas for her family one night. 
+The Supreme Pizza cost 50 cents more than the Hawaiian. 
+The total cost for 2 Hawaiian pizzas and 3 Supreme pizzas was \$20.75. 
+What is the price of one Supreme pizza?
+\item A tennis club has 78 members – male and female. The number of males is 6 more than twice the number of females. How many males were there?
+\end{enumerate}
+\newpage
+\section{Non-Linear Systems I}
+Consider the following system of equations:\\
+\begin{align*}
+y&=2x+4&\circled{1}&&&&\\
+y&=x^{2}-3x-10&\circled{2}&&&&
+\end{align*}
+These can be solved by substitution, rearrangement and factorising.\\\\
+Substitute \circled{1} into \circled{2}
+\begin{align*}
+y&=2x+4&&&&&\\
+4&=x^{2}-5x-10&&&&&\\
+0&=x^{2}-5x-14&&&&&\\
+\Rightarrow ~~~x^{2}-5x-14&=0&&&&&\\
+\text{Factorise} ~~~(x-7)(x+2)&=0&&&&&\\
+\Rightarrow ~~~x=7~and~x=-2&&&&&&
+\end{align*}
+\begin{itemize}
+\item Substituting $x=7$ into \circled{1}, we find
+\begin{align*}
+y&=2\times 7+4&&&&&\\
+y&=18&&&&&
+\end{align*}
+\item Substituting $x=-2$ into \circled{1}, we find
+\begin{align*}
+y&=2\times -2+4&&&&&\\
+y&=0&&&&&
+\end{align*}
+\end{itemize}
+If we plot both equations, the solutions give the intersection points.
+\begin{center}
+\begin{tikzpicture}[yscale=0.2,xscale=0.3]
+\draw[->] (-8,0) -- (8,0) node[right] {$x$};
+\draw[->] (0,-15) -- (0,30) node[above] {$y$};
+\draw[scale=1,domain=-5:9,smooth,variable=\x,blue] plot ({\x},{2*\x+4});
+\draw[scale=1,domain=-5:8,smooth,variable=\x,red] plot ({\x},{\x*\x-3*\x-10});
+\fill (-2,0) ellipse (6pt and 9pt);
+\fill (7,18) ellipse (6pt and 9pt);
+\draw (-2,0.75) node[left=0pt] {$(-2,0)$};
+\draw (7,18) node[right=0pt] {$(7,18)$};
+\draw (4,-3) node[right=4pt,red] {$y = -x^2 + 4x + 2$};
+\draw (-5,-3) node[left,blue] {$y = 2x+4$};
+	\end{tikzpicture}
+\end{center}
+\newpage
+\subsection{Exercise:}\label{ex1}
+Solve these by factorising the final quadratic 
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+y&=4x+1\\
+y&=x^{2}-x-65
+\end{align*}
+\item \begin{align*}
+y&=10x+5\\
+y&=x^{2}+22x+25
+\end{align*}
+\item \begin{align*}
+y&=x-1\\
+y&=x^{2}-11x+34
+\end{align*}
+\item \begin{align*}
+y&=x+20\\
+y&=x^{2}
+\end{align*}
+\item \begin{align*}
+y&=3x+2\\
+y&=x^{2}+8x-22
+\end{align*}
+\item \begin{align*}
+y&=4x+2\\
+y&=2x^{2}-7x-19
+\end{align*}
+\end{enumerate}	
+\end{multicols}
+\subsection{Exercise:}\label{ex2}
+Solve these by using the polynomial solver on the graphics calculator for the final quadratic.
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+y-x&=10\\
+x^{2}+y&=8020
+\end{align*}
+\item \begin{align*}
+y-x&=10\\
+x^{2}+y&=8200
+\end{align*}
+\item \begin{align*}
+x+y&=25\\
+x^{2}+y&=5137
+\end{align*}
+\item \begin{align*}
+2x+y&=50\\
+x^{2}+y&=5137
+\end{align*}
+\item \begin{align*}
+y-12x&=101\\
+x^{2}+y&=5541
+\end{align*}
+\item \begin{align*}
+y+x&=500\\
+x^{2}+y&=10006
+\end{align*}
+\end{enumerate}	
+\end{multicols}
+\subsection{Exercise:}\label{ex3}
+Solve the following systems:
+\begin{multicols}{2}
+\begin{enumerate}
+\item \begin{align*}
+x^{2}+y^{2}&=5\\
+y&=x-3
+\end{align*}
+\item \begin{align*}
+x^{2}+y^{2}&=18\\
+y&=x+6
+\end{align*}
+\end{enumerate}	
+\end{multicols}
+
+
+\newpage
+\section{Non-Linear Systems II}
+Consider the following system of equations:\\
+\begin{align*}
+y&=x+4&\circled{1}&&&&\\
+xy&=45&\circled{2}&&&&
+\end{align*}
+substitute \circled{1} into \circled{2}
+\begin{align*}
+\Rightarrow~~~ x(x+4)&=45&&&&&\\
+x^{2}+4x-45&=0&&&&&\\
+(x+9)(x-5)&=0&&&&&\\
+\Rightarrow~~~ x=-9~~and~~x=5&&&&&&\\
+\Rightarrow~~~ y=-9+4~~and~~y=5+4&&&&&&\\
+y=-5~~and~~y=9&&&&&&
+\end{align*}\\
+\textbf{Using the solver on the graphics calculator:}\\
+\begin{align*}
+y&=63x+15&\circled{1}&&&&\\
+xy&=12&\circled{2}&&&&
+\end{align*}
+substitute \circled{1} into \circled{2}
+\begin{align*}
+x(63x+15)&=12&&&&&\\
+\underset{a}{\underbrace{63}}~x^{2}~\underset{b}{\underbrace{+15}}~x~\underset{c}{\underbrace{-12}}&=0&&&&&
+\end{align*}
+On your Calculator:Go to EQUA $\rightarrow$ F2 (Polynomial)  $\rightarrow$ F2 (Degree 2)\\ $\rightarrow$ Enter $a=63$, $b=15$, $c=-12$\\\\
+This gives $x=0.333$ and $x=-0.571$\\\\
+Finding $y$ using \circled{1}
+\begin{align*}
+y&=63\times 0.333+15&&&&&&\\
+&=35.979&&&&&&\\
+y&=63\times -0.571+15&&&&&&\\
+&=20.973&&&&&&
+\end{align*}
+\newpage
+\subsection{Exercise:}\label{ex4}
+Solve by factorising:
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+y&=x+9\\
+xy&=36
+\end{align*}
+\item \begin{align*}
+y&=x-13\\
+xy&=-36
+\end{align*}
+\item \begin{align*}
+xy&=3\\
+y&=x-2
+\end{align*}
+\end{enumerate}	
+\end{multicols}
+\subsection{Exercise:}\label{ex5}
+Solve using polnomial solver:
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+y&=8x+2\\
+xy&=3
+\end{align*}
+\item \begin{align*}
+y&=95x+174\\
+xy&=77
+\end{align*}
+\item \begin{align*}
+xy&=5656\\
+y&=1564x+3453
+\end{align*}
+\end{enumerate}	
+\end{multicols}
+
+
+
+\newpage
+\section{First Practice Tasks}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=16cm]{prac1}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=16cm]{prac2}
+\end{figure}
+\newpage
+\section{Further Substitution Problems}
+Example: Consider the following system of equations:
+\begin{align*}
+5y+2x&=2&\circled{1}&&&&&\\
+2xy&=-6+9y&\circled{2}&&&&&
+\end{align*}
+Rearranging \circled{1}, it looks like $2x=2-5y$ and looks like a good choice for substitution in \circled{2}.
+\begin{align*}
+(2-5y)y=-6+9y
+\end{align*}
+Expanding and rearranging leads to a quadratic in the variable $y$:
+\begin{align*}
+(2-5y)y&=-6+9y\\
+2y-5y^{2}&=-6+9y\\
+5y^{2}+7y-6&=0\\
+(5y-3)(y+2)&=0
+\end{align*}
+$\Rightarrow$
+\begin{align*}
+y=\frac{3}{5}~~~\text{or}~~~y=-2
+\end{align*}
+Substituting these values into \circled{1}, we find the corresponding $x$ value:\\
+\begin{align*}
+5\times \frac{3}{5}+2x=2\\
+x=-\frac{1}{2}
+\end{align*}
+and 
+\begin{align*}
+5\times-2+2x=2\\
+x=6
+\end{align*}
+The solutions are, therefore:
+\begin{align*}
+x=-\frac{1}{2}~~~~&\text{and}~~~~y=\frac{3}{5}\\
+x=6~~~~&\text{and}~~~~y=-2
+\end{align*}
+\newpage
+\subsection{Exercise}\label{ex6}
+\begin{multicols}{2}
+\begin{enumerate}
+\item\begin{align*}
+10y+2x&=100\\
+2xy&=15000-750y 
+\end{align*}\footnotesize(choose the solution where $x+y$ is largest)\normalsize\\
+\item\begin{align*}
+2x+12y&=840\\
+2xy&=18000-120y
+\end{align*}\footnotesize(choose the solution where $x+y$ is smallest) \normalsize
+\item\begin{align*}
+4y+3x&=286\\
+3xy&=11760-150y
+\end{align*}\footnotesize (choose the solution where $x+y$ is largest) \normalsize
+\item\begin{align*}
+56y+7x&=700\\
+7xy&=9800-1092y
+\end{align*}\footnotesize(choose the solution where $x,y$ are both positive) \normalsize
+\item\begin{align*}
+18y+4x&=721\\
+4xy&=5760-143y
+\end{align*}\footnotesize (choose the solution where $x+y$ is largest) \normalsize
+\item\begin{align*}
+24y+6x&=532\\
+6xy&=9360-500y
+\end{align*}\footnotesize (choose the solution where $x,y$ are both positive)\normalsize
+\item\begin{align*}
+35y+2x&=1085\\
+2xy&=21350-1400y
+\end{align*}\footnotesize (choose the solution where $x,y$ are both positive) \normalsize
+\item\begin{align*}
+7x+4y&=302\\
+21120-302y&=7xy
+\end{align*}\footnotesize (choose the solution where $x,y$ are both positive)\normalsize
+\end{enumerate}
+\end{multicols}
+\subsection{Exercise}\label{ex7}
+More complex substitutions. Choose only whole number solutions for $x$ and $y$.
+\begin{multicols}{3}
+\begin{enumerate}
+\item\begin{align*}
+3x+4y&=740\\
+xy&=5500+50y
+\end{align*} 
+\item\begin{align*}
+7x+9y&=1602\\
+xy&=8282+17y
+\end{align*}
+\item\begin{align*}
+5x+11y&=3270\\
+xy&=33490+83y
+\end{align*}
+\item\begin{align*}
+7x+5y&=2195\\
+xy&=4020+150y
+\end{align*}
+\item\begin{align*}
+2x+5y&=1702\\
+xy&=3300+90y
+\end{align*}
+\item\begin{align*}
+17x+14y&=2972\\
+xy&=2060+70y
+\end{align*}
+\item\begin{align*}
+11x+13y&=9320\\
+xy&=40000-200y
+\end{align*} 
+\item\begin{align*}
+4x-5y+10&=0\\
+xy&=2850-30y
+\end{align*}
+\item\begin{align*}
+3x-7y+202&=0\\
+4xy&=2679+7x
+\end{align*}     
+\end{enumerate}
+\end{multicols}
+\newpage
+\subsection{Exercise} \label{ex8}
+\begin{enumerate}
+\item Sports incorporated sells basketballs and cricketballs for \$56.00 and \$7.00 repectively.\\
+It so happens that the relationship between the number of basketballs(x) and cricketballs(y) sold on any day can be modelled by the equation $7xy=9800-1092y$.\\
+\$700 worth of basketballs and cricketballs are sold on a particular day.\\
+How many of each were sold?
+\item Sports Inc also sells netballs and tennis balls. Their cost is \$35.00 and \$2.00 repectively.\\
+It so happens that the relationship between the sales of netballs and tennis balls can be modelled by the equation $2xy=21350-1400y$.\\
+Total sales were \$1085 on a particular day.\\
+How many of each were sold?\\
+(you may get a fractional answer that must be rounded, and may also find that many people had run out of tennis balls that day).
+	
+\end{enumerate}
+\newpage
+\section{Using the discriminant with k problems}
+Question: Find value(s) of k that will give one solution to the following equation system.
+\begin{align*}
+2x+ky&=5&\circled{1}&&&&&\\
+4xy&=1+6y&\circled{2}&&&&&
+\end{align*}
+In this case we proceed as usual by creating an equation that has one $x$ or $y$ variable (and will also include $k$);\\
+Rearrange \circled{1}, multiply by $2$ and substitute:
+\begin{align*}
+&&2x&=5-ky&\circled{1}&&&&&\\
+(\times 2)\Rightarrow&& 4x&=10-2ky&&&&&&\\
+\text{substitute into}~\circled{2}\Rightarrow&& (10-2ky)y&=1+6y&&&&&&\\
+&& 10y-2ky^{2}&=1+6y&&&&&&\\
+&& 2ky^{2}-4y+1&=0&\circled{3}&&&&&\\
+\end{align*}
+At this point we need to find the value of $k$ that will give the equation one solution:\\
+This means that we need to use the discriminant, finding value for $k$ such that $b^{2}-4ac=0$\\\\
+We identify from \circled{3} that $a=2k$, $b=-4$, $c=+1$.
+\begin{align*}
+&&b^{2}-4ac&=0&&&&&&\\
+\Rightarrow&&(-4)^{2}-4\times 2k\times 1&=0&&&&&&\\
+&&16-8k&=0&&&&&&\\
+&&k&=2&&&&&&
+\end{align*}
+\subsection{Exercise: Find values of k that give one solution to the system}\label{ex9}
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+20x+ky&=100\\
+2xy&=1000-10y
+\end{align*}
+\item \begin{align*}
+2x+ky&=1500\\
+4xy&=1100-5y
+\end{align*}
+\item \begin{align*}
+7x+5y&=k\\
+14xy&=2010-20y
+\end{align*}
+\item \begin{align*}
+12x+24y&=48\\
+kxy&=2010-12y
+\end{align*}
+\item \begin{align*}
+15x+12y&=120\\
+3xy&=k-4y
+\end{align*}
+\item \begin{align*}
+y&=(x-3)^{2}\\
+y&=-(x-k)^{2}+5
+\end{align*}
+\end{enumerate}
+\end{multicols} 
+\newpage
+\section{Answers}
+\begin{multicols}{3}
+\textbf{\ref{ex1}:}
+\begin{enumerate}
+\item $x=11$~$y=45$\\$x=-6$~$y=-23$
+\item $x=-10$~$y=-95$\\$x=-2$~$y=-15$
+\item $x=7$~$y=6$\\$x=5$~$y=4$
+\item $x=5$~$y=25$\\$x=-4$~$y=-16$
+\item $x=-8$~$y=-22$\\$x=3$~$y=11$
+\item $x=-\frac{3}{2}$~$y=-4$\\$x=7$~$y=30$
+\end{enumerate}
+\textbf{\ref{ex2}:}
+\begin{enumerate}
+\item $x=89$~$y=99$\\$x=-90$~$y=-80$
+\item $x=90$~$y=100$\\$x=-91$~$y=-81$
+\item $x=72$~$y=-47$\\$x=-71$~$y=96$
+\item $x=72.33$~$y=-94.66$\\$x=-70.33$~$y=190.66$
+\item $x=68$~$y=917$\\$x=-80$~$y=-859$
+\item $x=98$~$y=402$\\$x=-97$~$y=597$
+\end{enumerate}
+\textbf{\ref{ex3}:}
+\begin{enumerate}
+\item $x=2$~$y=1$\\$x=1$~$y=-2$
+\item $x=3$~$y=-3$\\\\
+\end{enumerate}
+\textbf{\ref{ex4}:}
+\begin{enumerate}
+\item $x=-12$~$y=-3$\\$x=3$~$y=12$
+\item $x=9$~$y=-4$\\$x=4$~$y=-9$
+\item $x=-1$~$y=-3$\\$x=3$~$y=1$
+\end{enumerate}
+\textbf{\ref{ex5}:}
+\begin{enumerate}
+\item $x=\frac{1}{2}$~$y=6$\\$x=-\frac{3}{4}$~$y=-4$
+\item $x=\frac{7}{19}$~$y=209$\\$x=-\frac{11}{5}$~$y=-35$
+\item $x=\frac{101}{92}$~$y=5170$\\$x=-\frac{56}{17}$~$y=-1699$
+\end{enumerate}
+\textbf{\ref{ex6}:}	
+\begin{enumerate}
+\item $x=-75$~$y=25$\\$x=-250$~$y=60$
+\item $x=240$~$y=30$\\$x=120$~$y=50$
+\item $x=30$~$y=49$\\$x=15.\dot{3}$~$y=60$
+\item $x=44$~$y=7$\\$x=-100$~$y=25$
+\item $x=0.25$~$y=40$\\$x=144.25$~$y=8$
+\item $x=36\frac{2}{3}$~$y=13$\\$x=-30\frac{1}{3}$~$y=30$
+\item $x=367.5$~$y=10$\\$x=-525$~$y=61$
+\item $x=\frac{82}{7}$~$y=55$\\$x=-\frac{82}{7}$~$y=96$
+\end{enumerate}
+\textbf{\ref{ex7}:}
+\begin{enumerate}
+\item $y=110$~$y=37.5$\\$x=100$
+\item $y=101$~$y=63.777$\\$x=99$
+\item $y=170$~$y=89.545$\\$x=280$
+\item $y=201$~$y=28$\\$x=170$
+\item $y=300$~$y=4.4$\\$x=101$
+\item $y=103$~$y=24.85$\\$x=90$
+\item $y=40$~$y=846.15$\\$x=800$
+\item $y=38$~$y=-60$\\$x=45$~$x=-310$
+\item $x=19$~$y=-82.25$\\$y=37$
+\end{enumerate}
+\textbf{\ref{ex9}:}
+\begin{enumerate}
+\item $k=1$
+\item $k=1026.14$
+\item $k=131.77$~or~$k=-151.7$
+\item $k=28.701$~or~$k=-34.7$
+\item $k=81.67$
+\item $k=-0.162$~or~$k=6.162$
+\end{enumerate}
+\end{multicols}
+
+
+\newpage
+\section{Second Practice Tasks}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=17cm]{prac3}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=17cm]{prac4}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=17cm]{prac5}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=17cm]{prac6}
+\end{figure}
+\newpage
+\section{Extra Questions}
+\begin{enumerate}
+\begin{multicols}{2}
+\item \begin{enumerate}
+\item \begin{align*}
+x^2+100y&=10000\\
+4x+5y&=560
+\end{align*}	
+\item \begin{align*}
+x^2+125y&=7400\\
+	4x+5y&=360
+	\end{align*}
+\item\begin{align*}
+x^2+100y&=6225\\
+12x+15y&=1080
+\end{align*}
+\item\begin{align*}
+x^2+52y&=4482\\
+6x+8y&=720
+\end{align*}
+\item\begin{align*}
+x^2+169y&=8281\\
+5x+13y&=689
+\end{align*}
+\item\begin{align*}
+x^2+9y&=1305\\
+80x+15y&=2895
+\end{align*}	
+\end{enumerate}
+\end{multicols}	
+\vspace{1cm}
+\begin{multicols}{2}
+\item \begin{enumerate}
+\item \begin{align*}
+10xy&=69255-455y\\
+8x+12y&=1292
+\end{align*}
+\item \begin{align*}
+5xy&=360y-3150\\
+7x+9y&=315
+\end{align*}
+\item \begin{align*}
+42xy&=700y+5740\\
+21x+35y&=1855
+\end{align*}
+\item \begin{align*}
+6xy&=327y-9801\\
+14x+21y&=2611
+\end{align*}	
+\end{enumerate}
+\end{multicols}
+\vspace{1cm}
+\item Find value(s) for k that gives 1 solution:
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+x^2+125y&=10000\\
+kx+5y&=625
+\end{align*}
+\item \begin{align*}
+3xy&=6561-36y\\
+3x+ky&=126
+\end{align*}
+\item \begin{align*}
+y^2+48x&=1872\\
+2x+y&=k
+\end{align*}
+	
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+\newpage
+\subsection{Solutions}
+\begin{enumerate}
+\begin{multicols}{2}
+\item \begin{enumerate}
+\item \begin{align*}
+(20,96)\\
+(60,64)
+\end{align*}	
+\item \begin{align*}
+(20,56)\\
+(80,8)
+\end{align*}
+\item\begin{align*}
+(15,60)\\
+(65,20)
+\end{align*}
+\item\begin{align*}
+(6,85.5)\\
+(33,65.25)
+\end{align*}
+\item\begin{align*}
+(13,48)\\
+(52,33)
+\end{align*}
+\item\begin{align*}
+(12,129)\\
+(36,1)
+\end{align*}	
+\end{enumerate}
+\end{multicols}	
+\vspace{1cm}
+\begin{multicols}{2}
+\item \begin{enumerate}
+\item \begin{align*}
+(40,81)\\
+(76,57)
+\end{align*}
+\item \begin{align*}
+(27,14)\\
+(90,-35)
+\end{align*}
+\item \begin{align*}
+(20,41)\\
+(85,2)
+\end{align*}
+\item \begin{align*}
+(38,99)\\
+(203,-11)
+\end{align*}	
+\end{enumerate}
+\end{multicols}
+\vspace{1cm}
+\item 
+\begin{multicols}{3}
+\begin{enumerate}
+\item \begin{align*}
+k=6
+\end{align*}
+\item \begin{align*}
+k=1
+\end{align*}
+\item \begin{align*}
+k=84
+\end{align*}
+
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+\end{document}
