@@ -22,7 +22,7 @@ class DrawingPage{
         this.element.addEventListener('mousedown', this.mDown.bind(this));
         this.element.addEventListener('mousemove', this.mMove.bind(this));
         this.element.addEventListener('mouseup', this.mUp.bind(this));
-
+        // if mouse is down and inside drawing boundary, dragging will be true
         this.dragging = false;
 
         this.xSRound = 0
@@ -30,9 +30,11 @@ class DrawingPage{
         this.xMRound = 0
         this.yMRound = 0
 
-        this.xN = 16
-        this.yN = 20
+        this.xN = 16;
+        this.yN = 20;
 
+
+        this.tempBitMap = new Image();
     }
 
     mDown(e){
@@ -40,12 +42,16 @@ class DrawingPage{
         this.yMouseStart = e.offsetY;
         if(this.boundaryCheck(this.xMouse, this.yMouse, this.x, this.y, this.w, this.h)){
             this.dragging = true;
-        }
-        console.log(Button.shape);
+            //cty.beginPath();
+            //cty.moveTo(this.xMouseStart,this.yMouseStart);
 
+        }
+    
+/*
         this.grid_round(16,5)
         this.grid_round(this.xMouseStart, this.w/this.xN)
         this.grid_round(this.yMouseStart, this.h/this.yN)
+        */
     
 
 
@@ -72,9 +78,10 @@ class DrawingPage{
 
             }
             
-            
-            //this.dragging = false;
         }
+
+
+ 
  
     }
 
@@ -94,14 +101,24 @@ class DrawingPage{
                         this.objectSet.push(new Ellipse(this.xSRound, this.ySRound, this.xMRound, this.yMRound, Swatch.colour, canvas))
                     }
 
+            }else if(Button.shape == "Line"){
+                console.log(this.tempBitMap);
+                this.objectSet.push(new DrawImage(this.tempBitMap))
+                this.tempBitMap = new Image();
+
+
+
             }
+
         }
         this.dragging = false;
     }
 
     update(){
         //------------background
+        ctx.save();
         this.draw();
+        ctx.clip();
         //-------------- grid
         if(GridButton.on){
         this.grid(this.x, this.y, this.w, this.h, this.xN, this.yN)
@@ -112,6 +129,8 @@ class DrawingPage{
         for(var i=0; i<this.objectSet.length; i++){
             this.objectSet[i].update();
         }
+
+        
         if(this.dragging && Button.shape != "Move"){
             var w = this.xMouse - this.xMouseStart;
             var h = this.yMouse - this.yMouseStart;
@@ -120,13 +139,35 @@ class DrawingPage{
             this.ySRound = this.grid_round(this.yMouseStart, this.h/this.yN)
             this.xMRound = this.grid_round(this.xMouse, this.w/this.xN)
             this.yMRound = this.grid_round(this.yMouse, this.h/this.yN)
-            if(GridButton.on){
+            if(Button.shape == "Line"){
+                console.log("okay");
+                cty.drawImage(this.tempBitMap, 0,0);
+                var circGradient = ctx.createRadialGradient(this.xMouse,this.yMouse,0, this.xMouse,this.yMouse,30);
+                // Add three color stops
+                circGradient.addColorStop(0, Swatch.colour);
+                circGradient.addColorStop(1, "rgba(255,255,255,0)");
+                // Set the fill style and draw a circle
+                cty.fillStyle = circGradient;
+                //cty.fillStyle = Swatch.colour;
+                cty.strokeStyle = Swatch.colour;
+                cty.lineWidth = 5;
+                cty.beginPath();
+                cty.arc(this.xMouse, this.yMouse, 30, 0, 2*Math.PI);
+                cty.fill();
+                //cty.moveTo(this.xMouseStart, this.yMouseStart);
+                //cty.lineTo(this.xMouse,this.yMouse);
+               //cty.stroke();
+                this.tempBitMap = cv.transferToImageBitmap();
+                ctx.drawImage(this.tempBitMap,0,0);
+            }else if(GridButton.on){
                 this.drawRect(this.xSRound, this.ySRound, this.xMRound - this.xSRound, this.yMRound - this.ySRound, "rgba(0,255,255,1)", false);
             }else{
                 this.drawRect(this.xMouseStart, this.yMouseStart, w, h, "rgba(255,255,0,1)", false);
             }
 
         }
+
+        ctx.restore();
         
        
 

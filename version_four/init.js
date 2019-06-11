@@ -15,6 +15,7 @@ function setupCanvas(canvas) {
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   var ctx = canvas.getContext('2d');
+
   // Scale all drawing operations by the dpr, so you
   // don't have to worry about the difference.
   ctx.scale(dpr, dpr);
@@ -31,6 +32,22 @@ const width = canvas.width/myScale;
 const height = canvas.height/myScale;
 console.log(width);
 console.log(height);
+
+var cv = new OffscreenCanvas(800, 600);
+var cty = cv.getContext('2d');
+
+/*
+var cv = document.createElement('canvas');
+var cty = cv.getContext('2d');
+*/
+/*
+cty.fillStyle = "rgb(0,255,0)";
+cty.beginPath();
+cty.ellipse(150, 150, 20, 30, 0, 0, 2 * Math.PI);
+cty.fill();
+bitmapTwo = cv.transferToImageBitmap();
+*/
+
 
 
 

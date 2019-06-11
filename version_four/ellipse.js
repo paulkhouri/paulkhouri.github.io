@@ -23,3 +23,15 @@ class Ellipse{
     }
 
 }
+
+
+class DrawImage{
+    constructor(im){
+        this.im = im;
+    }
+
+    update(){
+        //ctx.drawImage(this.tempBitMap,0,0);
+        ctx.drawImage(this.im,0,0)
+    }
+}
